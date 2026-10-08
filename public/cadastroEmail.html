@@ -3,10 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de E-mail de confiaça</title>
+    <title>Cadastro de Email de confiaça</title>
     <link rel="stylesheet" href="cadastroEmail.css" />
   </head>
   <body>
+    <img
+      src="../assets/logoBB.png"
+      alt="logo do Banco do Brasil"
+      height="100"
+    />
+    <h1>Cadastro de Email de confiança</h1>
+    <form>
+      <label for="email">Email:</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Digite aqui seu Email de confiança"
+        required
+      />
+
+      <br /><br />
+
+      <label for="email2">Confirmar Email:</label>
+      <input
+        type="text"
+        name="email2"
+        id="email2"
+        placeholder="Digite novamente seu Email"
+        required
+      />
+
+      <br /><br />
+
+      <label for="senha">Senha:</label>
+      <input
+        type="password"
+        name="senha"
+        id="senha"
+        placeholder="Digite aqui sua senha"
+        required
+      />
+
+      <br /><br />
+
+      <button type="submit" id="confirmar">Confirmar</button>
+    </form>
     <script src="cadastroEmail.js"></script>
   </body>
 </html>
