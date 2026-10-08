@@ -3,10 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de E-mail de confiaça</title>
+    <title>Cadastro de Celular de confiança</title>
     <link rel="stylesheet" href="cadastroCel.css" />
   </head>
   <body>
+    <img
+      src="../assets/logoBB.png"
+      alt="logo do Banco do Brasil"
+      height="100"
+    />
+    <h1>Cadastro de Celular de confiança</h1>
+    <form>
+      <label for="celular">Celular:</label>
+      <input
+        type="tel"
+        name="celular"
+        id="celular"
+        placeholder="(00) 00000-0000"
+        inputmode="numeric"
+        maxlength="15"
+        autocomplete="tel-national"
+        required
+      />
+
+      <label for="celular2">Confirmar Celular:</label>
+      <input
+        type="tel"
+        name="celular2"
+        id="celular2"
+        placeholder="Digite novamente seu Celular"
+        inputmode="numeric"
+        maxlength="15"
+        autocomplete="off"
+        required
+      />
+
+      <label for="senha">Senha:</label>
+      <input
+        type="password"
+        name="senha"
+        id="senha"
+        placeholder="Digite aqui sua senha"
+        autocomplete="current-password"
+        required
+      />
+
+      <button type="submit" id="confirmar">Confirmar</button>
+    </form>
     <script src="cadastroCel.js"></script>
   </body>
 </html>

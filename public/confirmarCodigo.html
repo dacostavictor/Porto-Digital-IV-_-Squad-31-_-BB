@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmação de código</title>
+    <link rel="stylesheet" href="confirmarCodigo.css" />
+  </head>
+  <body>
+    <img
+      src="../assets/logoBB.png"
+      alt="logo do Banco do Brasil"
+      height="100"
+    />
+
+    <div class="conteudo" id="verificacao">
+      <h1>Digite o código enviado por Email</h1>
+      <p class="instrucao">
+        Enviamos um código de 6 dígitos para
+        <strong id="emailMascarado"></strong>.
+      </p>
+
+      <form>
+        <div class="codigo" id="codigo">
+          <input type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Dígito 1" required />
+          <input type="text" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Dígito 2" required />
+          <input type="text" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Dígito 3" required />
+          <input type="text" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Dígito 4" required />
+          <input type="text" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Dígito 5" required />
+          <input type="text" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Dígito 6" required />
+        </div>
+
+        <p class="erro" id="erro" role="alert" hidden></p>
+        <p class="demo" id="demo" hidden></p>
+
+        <button type="submit" id="confirmar">Confirmar</button>
+        <button type="button" id="reenviar" class="link">Reenviar código</button>
+      </form>
+    </div>
+
+    <div class="conteudo" id="sucesso" hidden>
+      <div class="check" aria-hidden="true">✓</div>
+      <h1>Cadastro concluído!</h1>
+      <p class="instrucao">
+        Seu email e seu celular de confiança foram cadastrados com sucesso.
+      </p>
+    </div>
+
+    <script src="confirmarCodigo.js"></script>
+  </body>
+</html>
