@@ -1,9 +1,14 @@
+// Em modo demonstração não existe servidor de email: o código é gerado no
+// navegador e exibido na tela/console. Mude para false quando houver back-end.
 const MODO_DEMO = true;
 const SEGUNDOS_REENVIO = 30;
+// DEMO: tempo para o cadastro passar de "Em análise" para "Aprovado"
+const SEGUNDOS_APROVACAO_DEMO = 20;
 
 const email = sessionStorage.getItem("bb_email");
 const celular = sessionStorage.getItem("bb_celular");
 
+// Sem as etapas anteriores concluídas, volta para o início do fluxo
 if (!email || !celular) {
   window.location.replace("cadastroEmail.html");
 }
@@ -14,15 +19,15 @@ const erro = document.getElementById("erro");
 const demo = document.getElementById("demo");
 const reenviar = document.getElementById("reenviar");
 
+// ---------- Email mascarado: jo***@gmail.com ----------
 function mascararEmail(valor) {
   const [usuario, dominio] = valor.split("@");
   return `${usuario.slice(0, 2)}***@${dominio}`;
 }
 
-document.getElementById("emailMascarado").textContent = mascararEmail(
-  email || "@",
-);
+document.getElementById("emailMascarado").textContent = mascararEmail(email || "@");
 
+// ---------- Geração/"envio" do código ----------
 function enviarCodigo() {
   const numero = crypto.getRandomValues(new Uint32Array(1))[0] % 1000000;
   const codigo = String(numero).padStart(6, "0");
@@ -42,6 +47,7 @@ if (!sessionStorage.getItem("bb_codigo")) {
   demo.hidden = false;
 }
 
+// ---------- Reenvio com contagem regressiva ----------
 let temporizador;
 
 function iniciarContagem() {
@@ -71,6 +77,7 @@ reenviar.addEventListener("click", () => {
 
 iniciarContagem();
 
+// ---------- Caixas de dígitos ----------
 function limparCampos() {
   campos.forEach((c) => (c.value = ""));
   campos[0].focus();
@@ -100,6 +107,7 @@ campos.forEach((campo, i) => {
 
   campo.addEventListener("focus", () => campo.select());
 
+  // Colar o código inteiro (ex.: copiado do email)
   campo.addEventListener("paste", (event) => {
     event.preventDefault();
     const digitos = (event.clipboardData.getData("text") || "")
@@ -112,6 +120,37 @@ campos.forEach((campo, i) => {
 
 campos[0].focus();
 
+// ---------- Contatos de confiança (lista final) ----------
+// localStorage: os contatos precisam continuar existindo depois do fluxo.
+function salvarContatos() {
+  let contatos;
+  try {
+    contatos = JSON.parse(localStorage.getItem("bb_contatos")) || [];
+  } catch {
+    contatos = [];
+  }
+
+  const agora = Date.now();
+  [
+    { tipo: "email", valor: email },
+    { tipo: "celular", valor: celular },
+  ].forEach((novo) => {
+    // recadastrar o mesmo contato substitui o anterior (sem duplicar)
+    contatos = contatos.filter(
+      (c) => !(c.tipo === novo.tipo && c.valor === novo.valor),
+    );
+    contatos.push({
+      id: `${novo.tipo}-${agora}`,
+      ...novo,
+      criadoEm: agora,
+      aprovacaoEm: agora + SEGUNDOS_APROVACAO_DEMO * 1000,
+    });
+  });
+
+  localStorage.setItem("bb_contatos", JSON.stringify(contatos));
+}
+
+// ---------- Confirmação ----------
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -128,8 +167,10 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
+  // Sucesso: salva os contatos, limpa os dados temporários e abre a lista
   clearInterval(temporizador);
+  salvarContatos();
   sessionStorage.clear();
-  document.getElementById("verificacao").hidden = true;
-  document.getElementById("sucesso").hidden = false;
+  sessionStorage.setItem("bb_novo", "1");
+  window.location.href = "listaContatos.html";
 });
