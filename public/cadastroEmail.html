@@ -16,25 +16,23 @@
     <form>
       <label for="email">Email:</label>
       <input
-        type="text"
+        type="email"
         name="email"
         id="email"
         placeholder="Digite aqui seu Email de confiança"
+        autocomplete="email"
         required
       />
-
-      <br /><br />
 
       <label for="email2">Confirmar Email:</label>
       <input
-        type="text"
+        type="email"
         name="email2"
         id="email2"
         placeholder="Digite novamente seu Email"
+        autocomplete="off"
         required
       />
-
-      <br /><br />
 
       <label for="senha">Senha:</label>
       <input
@@ -42,10 +40,9 @@
         name="senha"
         id="senha"
         placeholder="Digite aqui sua senha"
+        autocomplete="current-password"
         required
       />
-
-      <br /><br />
 
       <button type="submit" id="confirmar">Confirmar</button>
     </form>

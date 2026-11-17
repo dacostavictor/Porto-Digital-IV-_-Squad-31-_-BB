@@ -1,0 +1,293 @@
+:root {
+  --bb-azul: #0038a8;
+  --bb-azul-hover: #002f8c;
+  --bb-amarelo: #ffef38;
+  --cinza-campo: #f1f3f2;
+  --cinza-texto: #3d3d3d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: var(--cinza-texto);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px 40px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: var(--bb-amarelo);
+}
+
+img {
+  margin-top: 40px;
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 22px;
+  color: var(--bb-azul);
+  margin: 24px 0 28px;
+}
+
+form {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+}
+
+form br {
+  display: none;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--cinza-texto);
+  margin-bottom: 6px;
+  margin-top: 18px;
+}
+
+input {
+  border-radius: 8px;
+  background-color: var(--cinza-campo);
+  border: 2px solid transparent;
+  width: 100%;
+  height: 44px;
+  padding-right: 13px;
+  padding-left: 13px;
+  font-size: 16px;
+  color: var(--cinza-texto);
+  transition: border-color 0.2s;
+}
+
+input::placeholder {
+  color: #9a9a9a;
+  font-weight: normal;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--bb-azul);
+  background-color: #ffffff;
+}
+
+#confirmar {
+  align-self: center;
+  margin-top: 36px;
+  border-radius: 32px;
+  border: none;
+  background-color: var(--bb-azul);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  max-width: 220px;
+  height: 46px;
+  color: #ffffff;
+  transition: background-color 0.2s;
+}
+
+#confirmar:hover {
+  background-color: var(--bb-azul-hover);
+}
+
+#confirmar:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 26px;
+  }
+}
+
+/* ---------- Lista de contatos ---------- */
+:root {
+  --verde-aprovado: #2e7d32;
+  --verde-fundo: #e8f5e9;
+  --ambar-analise: #f9a825;
+  --ambar-fundo: #fff8e1;
+  --ambar-texto: #8a5a00;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.conteudo {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+}
+
+.aviso {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background-color: var(--bb-amarelo);
+  font-size: 14px;
+  text-align: center;
+}
+
+.aviso[hidden],
+.vazio[hidden] {
+  display: none;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: var(--cinza-campo);
+}
+
+.card__topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card__icone {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bb-azul);
+  color: #ffffff;
+}
+
+.card__icone svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card__tipo {
+  font-size: 12px;
+  font-weight: normal;
+  color: #6b6b6b;
+}
+
+.card__valor {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.selo {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.selo--analise {
+  background-color: var(--ambar-fundo);
+  color: var(--ambar-texto);
+}
+
+.selo--aprovado {
+  background-color: var(--verde-fundo);
+  color: var(--verde-aprovado);
+}
+
+/* Barra de status */
+.barra {
+  height: 8px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background-color: #dcdfde;
+  overflow: hidden;
+}
+
+.barra__preenchimento {
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.barra__preenchimento--analise {
+  background-color: var(--ambar-analise);
+}
+
+.barra__preenchimento--aprovado {
+  background-color: var(--verde-aprovado);
+}
+
+.card__data {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #6b6b6b;
+}
+
+.vazio {
+  margin: 24px 0;
+  text-align: center;
+  font-weight: normal;
+  color: #6b6b6b;
+}
+
+/* Botão em formato de link (mesmo visual do botão Confirmar) */
+.botao {
+  align-self: center;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 260px;
+  height: 46px;
+  border-radius: 32px;
+  background-color: var(--bb-azul);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.botao:hover {
+  background-color: var(--bb-azul-hover);
+}
